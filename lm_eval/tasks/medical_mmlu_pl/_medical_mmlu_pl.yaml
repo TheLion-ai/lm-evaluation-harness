@@ -1,0 +1,11 @@
+group: medical_mmlu_pl
+task:
+  - mmlu_anatomy_pl
+  - mmlu_clinical_knowledge_pl
+  - mmlu_college_biology_pl
+  - mmlu_professional_medicine_pl
+aggregate_metric_list:
+  - metric: acc
+    weight_by_size: True
+metadata:
+  version: 1
