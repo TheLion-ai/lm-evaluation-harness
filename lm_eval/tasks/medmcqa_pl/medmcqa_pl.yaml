@@ -1,0 +1,19 @@
+task: medmcqa_pl
+"dataset_name": medmcqa
+dataset_path: lion-ai/eskulap_validation_datasets
+output_type: multiple_choice
+#training_split: train
+#validation_split: validation
+test_split: dev
+doc_to_text: !function utils_medmcqa_pl.doc_to_text
+doc_to_target: correct_options_idx
+doc_to_choice: [ 'A','B','C','D' ]
+#should_decontaminate: true
+#doc_to_decontamination_query: "{{question}}"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
