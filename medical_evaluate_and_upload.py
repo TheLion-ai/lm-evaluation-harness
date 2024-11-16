@@ -60,7 +60,7 @@ def main():
     parser.add_argument("--tasks", type=str, required=False, default="medmcqa_pl,medical_mmlu_pl,pubmedqa_pl,lek_pl,med4qa_pl",
                         help="Tasks to run (e.g., 'medmcqa_pl,medical_mmlu_pl,pubmedqa_pl').")
     parser.add_argument("--device", type=str, default="0", help="Device to use for evaluation (e.g., 'cuda:0').")
-    parser.add_argument("--batch_size", type=int, default=2, help="Batch size for evaluation.")
+    parser.add_argument("--batch_size", type=str, default=2, help="Batch size for evaluation. Write auto for automatic batch size.")
     parser.add_argument("--log_samples", action="store_true", help="Flag to log samples.")
 
     args = parser.parse_args()
