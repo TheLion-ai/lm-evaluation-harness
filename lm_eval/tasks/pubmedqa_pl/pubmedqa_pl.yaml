@@ -1,5 +1,5 @@
 task: pubmedqa_pl
-dataset_path: lion-ai/eskulap_validation
+dataset_path: lion-ai/eskulap_validation_datasets
 dataset_name: pubmedqa_pl
 output_type: multiple_choice
 test_split: test
