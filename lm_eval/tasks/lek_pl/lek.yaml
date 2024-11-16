@@ -1,11 +1,11 @@
-task: med4qa_pl
-dataset_name: med4qa
+task: lek_pl
+dataset_name: lek
 dataset_path: lion-ai/eskulap_validation_datasets
 output_type: multiple_choice
 test_split: test
-doc_to_text: !function preprocess_medqa.doc_to_text
-doc_to_target: answer_idx
-doc_to_choice: [ 'A', 'B', 'C', 'D' ]
+doc_to_text: !function preprocess_lek.doc_to_text
+doc_to_target: correct_answer
+doc_to_choice: [ 'A', 'B', 'C', 'D', 'E']
 metric_list:
   - metric: acc
     aggregation: mean
