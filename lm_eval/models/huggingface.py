@@ -495,7 +495,7 @@ class HFLM(TemplateLM):
 
         if self.AUTO_MODEL_CLASS is None:
             if self.backend == "causal":
-                self.AUTO_MODEL_CLASS = transformers.Gemma3ForCausalLM
+                self.AUTO_MODEL_CLASS = transformers.AutoModelForCausalLM
             elif self.backend == "seq2seq":
                 self.AUTO_MODEL_CLASS = transformers.AutoModelForSeq2SeqLM
 
