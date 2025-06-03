@@ -5,7 +5,7 @@ import os
 from huggingface_hub import HfApi
 
 
-def run_lm_eval(model, tasks, device, batch_size, log_samples):
+def run_lm_eval(model, tasks, device, batch_size, log_samples, system_instruction):
     results = lm_eval.simple_evaluate(
         model="hf",
         model_args=f"pretrained={model}",
@@ -13,6 +13,7 @@ def run_lm_eval(model, tasks, device, batch_size, log_samples):
         device=device,
         batch_size=batch_size,
         log_samples=log_samples,
+        system_instruction=system_instruction
     )
 
     return results
@@ -61,6 +62,7 @@ def main():
                         help="Tasks to run (e.g., 'medmcqa_pl,medical_mmlu_pl,pubmedqa_pl').")
     parser.add_argument("--device", type=str, default="0", help="Device to use for evaluation (e.g., 'cuda:0').")
     parser.add_argument("--batch_size", type=str, default=2, help="Batch size for evaluation. Write auto for automatic batch size.")
+    parser.add_argument("--system_instruction", type=str, default=None, help="System prompt")
     parser.add_argument("--log_samples", action="store_true", help="Flag to log samples.")
     parser.add_argument("--apply_chat_template", action="store_true", help="Flag to apply chat samples.")
 
@@ -76,6 +78,7 @@ def main():
         device=args.device,
         batch_size=args.batch_size,
         log_samples=args.log_samples,
+        system_instruction=args.system_instruction,
     )
 
     if results:
