@@ -35,6 +35,7 @@ from lm_eval.models.utils import (
     pad_and_concat,
     stop_sequences_criteria,
 )
+from transformers import Mistral3ForConditionalGeneration
 
 
 eval_logger = utils.eval_logger
@@ -569,7 +570,7 @@ class HFLM(TemplateLM):
                             model_kwargs["bnb_4bit_compute_dtype"]
                         )
 
-            self._model = self.AUTO_MODEL_CLASS.from_pretrained(
+            self._model = self.Mistral3ForConditionalGeneration.from_pretrained(
                 pretrained,
                 revision=revision,
                 torch_dtype=get_dtype(dtype),
@@ -667,6 +668,7 @@ class HFLM(TemplateLM):
                     revision=revision,
                     trust_remote_code=trust_remote_code,
                     use_fast=use_fast_tokenizer,
+                    tokenizer_type="mistral",
                 )
             else:
                 assert isinstance(
