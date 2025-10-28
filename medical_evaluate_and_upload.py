@@ -8,8 +8,7 @@ from huggingface_hub import HfApi
 def run_lm_eval(model,model_args, tasks, device, batch_size, log_samples, system_instruction):
     results = lm_eval.simple_evaluate(
         model="hf",
-        model_args=model_args,
-        model_args=f"pretrained={model}",
+        model_args=f"pretrained={model},{model_args}",
         tasks=tasks.split(","),
         device=device,
         batch_size=batch_size,
