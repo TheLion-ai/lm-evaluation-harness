@@ -631,13 +631,7 @@ class HFLM(TemplateLM):
 
             self._model = Mistral3ForConditionalGeneration.from_pretrained(
                 pretrained,
-                revision=revision,
-                torch_dtype=get_dtype(dtype),
-                trust_remote_code=trust_remote_code,
-                gguf_file=gguf_file,
-                quantization_config=quantization_config,
-                subfolder=subfolder,
-                **model_kwargs,
+                torch_dtype=torch.bfloat16, device_map="auto"
             )
         else:
             if autogptq and gptqmodel:
