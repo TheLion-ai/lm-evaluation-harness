@@ -1,3 +1,28 @@
+# Quick start: medical evaluation and upload
+
+To run the medical evaluation script and automatically upload results to the Hugging Face Hub:
+
+1) Set your HF token with read and write access to the lion-ai organization (required to upload results to the leaderboard dataset):
+
+```bash
+export HF_TOKEN=hf_XXXXXXXXXXXXXXXXXXXXXXXX
+```
+
+2) Run the script (you can change the model and other options):
+
+```bash
+python3 medical_evaluate_and_upload.py \
+  --model unsloth/Magistral-Small-2509 \
+  --batch_size auto:4
+```
+
+- You can change the model name to any Hugging Face model.
+- You can also change which tasks to run using `--tasks` (default: `medmcqa_pl,medical_mmlu_pl,pubmedqa_pl,lek_pl,lek_pl_prompt,med4qa_pl`).
+- For more settings (device, system prompt, logging samples, etc.), open `medical_evaluate_and_upload.py`.
+- The most basic usage is just providing the model name and batch size.
+
+---
+
 # Language Model Evaluation Harness
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10256836.svg)](https://doi.org/10.5281/zenodo.10256836)
