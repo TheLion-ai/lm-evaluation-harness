@@ -570,7 +570,7 @@ class HFLM(TemplateLM):
                             model_kwargs["bnb_4bit_compute_dtype"]
                         )
 
-            self._model = self.Mistral3ForConditionalGeneration.from_pretrained(
+            self._model = Mistral3ForConditionalGeneration.from_pretrained(
                 pretrained,
                 revision=revision,
                 torch_dtype=get_dtype(dtype),
