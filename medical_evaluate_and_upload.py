@@ -5,9 +5,10 @@ import os
 from huggingface_hub import HfApi
 
 
-def run_lm_eval(model, tasks, device, batch_size, log_samples, system_instruction):
+def run_lm_eval(model,model_args, tasks, device, batch_size, log_samples, system_instruction):
     results = lm_eval.simple_evaluate(
         model="hf",
+        model_args=model_args,
         model_args=f"pretrained={model}",
         tasks=tasks.split(","),
         device=device,
@@ -58,6 +59,7 @@ def process_output(results):
 def main():
     parser = argparse.ArgumentParser(description="Run lm-eval and process its output.")
     parser.add_argument("--model", type=str, required=True, help="The name of the model to evaluate.")
+    parser.add_argument("--model_args", type=str, required=False, help="Model args")
     parser.add_argument("--tasks", type=str, required=False, default="medmcqa_pl,medical_mmlu_pl,pubmedqa_pl,lek_pl,lek_pl_prompt,med4qa_pl",
                         help="Tasks to run (e.g., 'medmcqa_pl,medical_mmlu_pl,pubmedqa_pl').")
     parser.add_argument("--device", type=str, default="0", help="Device to use for evaluation (e.g., 'cuda:0').")
@@ -74,6 +76,7 @@ def main():
 
     results = run_lm_eval(
         model=args.model,
+        model_args=args.model_args,
         tasks=args.tasks,
         device=args.device,
         batch_size=args.batch_size,
